@@ -48,4 +48,15 @@ console.log("using Object.keys(): ", Object.keys(cat)); // Output: (2) ['name',
 // Using Object.values() method
 console.log("using Object.values(): ",  Object.values(cat)); // Output: (2) ['Kitty', 5]
 
+// Operations with obj
+let obj = {
+    num: 56776,
+    points: 368,
+    degree: 5
+}
+
+var result1 = obj.points + 5;
+console.log("operations with objects ", result1);
+
+
 
