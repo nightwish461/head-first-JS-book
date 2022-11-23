@@ -2,7 +2,7 @@ const expect = require("chai").expect;
 const arraysJS = require("../arrays.js");
 
 describe("Function in JS test", function () {
-  const bobaTeaList = [
+  const bobaBeverages = [
     { name: "Milk Tea", price: 5 },
     { name: "Seasalt Coffee", price: 4.5 },
     { name: "Moonlight Mango", price: 5 },
@@ -13,35 +13,38 @@ describe("Function in JS test", function () {
 
   describe("#mapNumbers", function () {
     it("convert array of objects to array of numbers", function () {
-      var array1 = [
+      var numberArray = [
         { num: 3, points: 657 },
         { num: 5 },
         { num: 7 },
         { num: 9 },
         { num: 46 },
       ];
-      const result = arraysJS.mapNumbers(array1);
-      expect(result[0]).to.equal(3);
+      const numbers = arraysJS.mapNumbers(numberArray);
+      expect(numbers[0]).to.equal(3);
+      //expect(numbers).contains([3, 5, 7, 9, 46]);
+      expect(numbers).to.eql([3, 5, 7, 9, 46]);
     });
   });
 
   describe("#using filter and map together", function () {
     it("first filter and map by name", function () {
-      const listCoffeeTeas = bobaTeaList
-        .filter((tea) => tea.name.toLowerCase().includes("coffee"))
-        .map((tea) => tea.name);
-      expect(listCoffeeTeas[0]).to.equal("Seasalt Coffee");
+      const coffees = bobaBeverages
+        .filter((beverage) => beverage.name.toLowerCase().includes("coffee"))
+        .map((coffee) => coffee.name);
+
+      expect(coffees).to.eql(["Seasalt Coffee", "Seasalt Coffee Latte"]);
     });
 
     it("first map, then filter by name", function () {
-      const listCoffeeTeas2 = bobaTeaList
+      const coffees = bobaBeverages
         .map((tea) => tea.name)
         .filter((tea) => tea.toLowerCase().includes("coffee"));
-      expect(listCoffeeTeas2[0]).to.equal("Seasalt Coffee");
+      expect(coffees).to.eql(["Seasalt Coffee", "Seasalt Coffee Latte"]);
     });
 
     it("filter and map by price", function () {
-      const priceLessThan = bobaTeaList
+      const priceLessThan = bobaBeverages
         .map((tea) => tea.price)
         .filter((price) => price < 5);
       expect(priceLessThan.length).to.equal(3);

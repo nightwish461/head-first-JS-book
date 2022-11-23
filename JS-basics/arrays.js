@@ -1,5 +1,3 @@
-const { employeeData } = require("./employeeData");
-
 /*
 ++++++++++++++++++++++++++++++++++++++++++++++++++
 +++++++++++++++++  Arrays in JS ++++++++++++++++++
@@ -80,21 +78,6 @@ console.log("spread operator ", [...elements("hi", 5)]);
 var otherColors = ["violet"];
 var all = otherColors.concat(colors);
 console.log(all);
-
-// Filtering an array
-console.log("filtering original array ", employeeData);
-
-// Filter undefined values
-
-if (employeeData != undefined) {
-  const employees = employeeData.filter(function (exists) {
-    return exists;
-  });
-  console.log("filtering without arrow function ", employees);
-
-  const employeesArrow = employeeData.filter((exists) => exists);
-  console.log("filtering with arrow function ", employeesArrow);
-}
 
 // Checking if an Array Contains a Value in JavaScript --> include() function
 console.log(colors.includes("red")); // --> true
@@ -228,5 +211,138 @@ console.log(newCountries5);
 let dummyString = "Javascript is the most popular language";
 let newDummyString = dummyString.replace(/\s+/g, "");
 console.log("New String is: " + newDummyString);
+
+/*
+  Arrays reduce function
+*/
+
+// Source: https://www.programiz.com/javascript/library/array/reduce
+// Adding up all values in the array. 1+2+3
+var numbersReduce1 = [1, 2, 3];
+var sum = numbersReduce1.reduce(function (previousValue, currentValue) {
+  return previousValue + currentValue;
+});
+
+console.log("array reduce() add: ", sum);
+
+// Subtracting numbers in an array
+const numbersReduce2 = [1800, 50, 300, 20, 100];
+
+var difference = numbersReduce2.reduce(
+  (previousValue, currentValue) => previousValue - currentValue
+);
+
+console.log("array reduce() subtract: ", difference);
+
+// function to join each string elements
+const message = ["JavaScript ", "is ", "fun."];
+
+function joinStrings(accumulator, currentValue) {
+  return accumulator + currentValue;
+}
+
+let joinedString = message.reduce(joinStrings);
+console.log("Join strings: ", joinedString);
+
+// Remove duplicate items from array
+
+let ageGroup = [18, 21, 1, 1, 51, 18, 21, 5, 18, 7, 10];
+
+// Initial value here is an empty array, thus we return an array here, not a single value
+let uniqueAgeGroup = ageGroup.reduce((previousValue, currentValue) => {
+  if (previousValue.indexOf(currentValue) === -1) {
+    previousValue.push(currentValue);
+  }
+  return previousValue;
+}, []);
+
+console.log("array reduce() uniqueAgeGroup: ", uniqueAgeGroup);
+
+// Adding shopping card items
+let shoppingCart = [
+  {
+    product: "phone",
+    qty: 1,
+    price: 500,
+  },
+  {
+    product: "Screen Protector",
+    qty: 1,
+    price: 10,
+  },
+  {
+    product: "Memory Card",
+    qty: 2,
+    price: 20,
+  },
+];
+
+// Calculate the total amount
+let total = shoppingCart.reduce(function (previousValue, currentValue) {
+  return previousValue + currentValue.qty * currentValue.price;
+}, 0);
+
+console.log("Total amount in shopping card ", total);
+
+// Calculate average price
+let averagePrice = shoppingCart.reduce(
+  (previousValue, currentValue) =>
+    previousValue + currentValue.price / shoppingCart.length,
+  0
+);
+
+console.log("Average price in shopping card ", averagePrice);
+
+// Grouping objects by property
+let people = [
+  { name: "John", age: 21 },
+  { name: "Oliver", age: 55 },
+  { name: "Michael", age: 55 },
+  { name: "Dwight", age: 19 },
+  { name: "Oscar", age: 21 },
+  { name: "Kevin", age: 55 },
+];
+
+function groupBy(objectArray, property) {
+  return objectArray.reduce(function (accumulator, currentObject) {
+    let key = currentObject[property];
+    if (!accumulator[key]) {
+      accumulator[key] = [];
+    }
+    accumulator[key].push(currentObject);
+    return accumulator;
+  }, {});
+}
+
+let groupedPeople = groupBy(people, "age");
+console.log("Grouping objects by property: ", groupedPeople);
+
+// Grouping objects by property Zoo example
+
+let zoo = [
+  { animal: "lion", gender: "female" },
+  { animal: "panda", gender: "male" },
+  { animal: "wolf", gender: "female" },
+  { animal: "snake", gender: "male" },
+  { animal: "zebra", gender: "female" },
+];
+
+let zooGroupedByGender = groupBy(zoo, "gender");
+console.log("Grouping objects by property: ", zooGroupedByGender);
+
+// Filtering an array
+const { employeeData } = require("./employeeData");
+console.log("filtering original array ", employeeData);
+
+// Filter undefined values
+if (employeeData != undefined) {
+  const employees = employeeData.filter(function (exists) {
+    return exists;
+  });
+  console.log("filtering without arrow function ", employees);
+
+  const employeesArrow = employeeData.filter((exists) => exists);
+  console.log("filtering with arrow function ", employeesArrow);
+}
 
 module.exports = { evenOdd, mapNumbers };
