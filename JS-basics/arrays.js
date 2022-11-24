@@ -330,6 +330,45 @@ let zoo = [
 let zooGroupedByGender = groupBy(zoo, "gender");
 console.log("Grouping objects by property: ", zooGroupedByGender);
 
+// Map from "1152" to "two one, one two, one five"
+const arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+arr.sort();
+
+const arrMapping = {
+  0: "zero",
+  1: "one",
+  2: "two",
+  3: "three",
+  4: "four",
+  5: "five",
+  6: "six",
+  7: "seven",
+  8: "eight",
+  9: "nine",
+};
+const counts = {};
+
+// Using object...
+for (const num of arr) {
+  counts[num] = counts[num] ? counts[num] + 1 : 1;
+}
+
+for (var key in counts) {
+  console.log(arrMapping[counts[key]] + " " + arrMapping[key]);
+}
+
+// 1)filtering out duplicates 2) counting values - 2 separate arrays are created...
+// https://stackoverflow.com/questions/37365512/count-the-number-of-times-a-same-value-appears-in-a-javascript-array
+const newArray = arr.filter(function (item, pos, self) {
+  return self.indexOf(item) == pos;
+});
+
+// ToDo
+
+console.log("newArray ", newArray);
+console.log("newArray ", arrayCounts);
+console.log("Mapping and counting values ", counts);
+
 // Filtering an array
 const { employeeData } = require("./employeeData");
 console.log("filtering original array ", employeeData);
