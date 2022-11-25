@@ -371,32 +371,40 @@ console.log("newArray ", newArray);
 
 const arr2 = [1, 1, 5, 2, 1, 1];
 
-var arrCounts = [];
-var arrNum = [];
+function processArray(array) {
+  var arrCounts = [];
+  var arrNum = [];
+  var str = "";
 
-for (var i = 0; i < arr2.length; i++) {
-  var currentNum = arr2[i];
-  var count = 1;
-  if (arrNum.includes(currentNum) && currentNum === arr2[i - 1]) {
-    count++;
-    var position = arrNum.length - 1;
-    arrCounts[position] = count;
+  for (var i = 0; i < array.length; i++) {
+    var currentNum = array[i];
+    var count = 1;
+    if (arrNum.includes(currentNum) && currentNum === array[i - 1]) {
+      count++;
+      var position = arrNum.length - 1;
+      arrCounts[position] = count;
+    }
+    if (arrNum.includes(currentNum) && currentNum !== array[i - 1]) {
+      arrNum.push(currentNum);
+      count = 1;
+      arrCounts.push(count);
+    }
+    if (!arrNum.includes(currentNum)) {
+      arrNum.push(currentNum);
+      count = 1;
+      arrCounts.push(count);
+    }
   }
-  if (arrNum.includes(currentNum) && currentNum !== arr2[i - 1]) {
-    arrNum.push(currentNum);
-    count = 1;
-    arrCounts.push(count);
+
+  for (var j = 0; j < arrNum.length; j++) {
+    str = str + " " + arrMapping[arrNum[j]] + " " + arrMapping[arrCounts[j]];
   }
-  if (!arrNum.includes(currentNum)) {
-    arrNum.push(currentNum);
-    count = 1;
-    arrCounts.push(count);
-  }
+
+  return str;
 }
 
 console.log("Map from 115211 to two one, one two, one five, two one");
-console.log("arrCounts ", arrCounts);
-console.log("arrNum ", arrNum);
+console.log(processArray(arr2));
 
 // Filtering an array
 const { employeeData } = require("./employeeData");
