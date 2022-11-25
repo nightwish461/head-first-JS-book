@@ -371,20 +371,24 @@ console.log("newArray ", newArray);
 
 const arr2 = [1, 1, 5, 2, 1, 1];
 
-function processArray(array) {
+function processArray(numberInput) {
+  if (numberInput === "") {
+    return "Error: String is empty";
+  }
+
+  var inputArray = numberInput.split("").map(Number);
   var arrCounts = [];
   var arrNum = [];
   var str = "";
 
-  for (var i = 0; i < array.length; i++) {
-    var currentNum = array[i];
+  for (var i = 0; i < inputArray.length; i++) {
+    var currentNum = inputArray[i];
     var count = 1;
-    if (arrNum.includes(currentNum) && currentNum === array[i - 1]) {
-      count++;
+    if (arrNum.includes(currentNum) && currentNum === inputArray[i - 1]) {
       var position = arrNum.length - 1;
-      arrCounts[position] = count;
+      arrCounts[position] += 1;
     }
-    if (arrNum.includes(currentNum) && currentNum !== array[i - 1]) {
+    if (arrNum.includes(currentNum) && currentNum !== inputArray[i - 1]) {
       arrNum.push(currentNum);
       count = 1;
       arrCounts.push(count);
@@ -397,14 +401,11 @@ function processArray(array) {
   }
 
   for (var j = 0; j < arrNum.length; j++) {
-    str = str + " " + arrMapping[arrNum[j]] + " " + arrMapping[arrCounts[j]];
+    str = str + " " + arrMapping[arrCounts[j]] + " " + arrMapping[arrNum[j]];
   }
 
   return str;
 }
-
-console.log("Map from 115211 to two one, one two, one five, two one");
-console.log(processArray(arr2));
 
 // Filtering an array
 const { employeeData } = require("./employeeData");
@@ -421,4 +422,4 @@ if (employeeData != undefined) {
   console.log("filtering with arrow function ", employeesArrow);
 }
 
-module.exports = { evenOdd, mapNumbers };
+module.exports = { evenOdd, mapNumbers, processArray };

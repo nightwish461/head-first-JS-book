@@ -27,6 +27,37 @@ describe("Function in JS test", function () {
     });
   });
 
+  describe("#processArray", function () {
+    it("Convert when string is empty", function () {
+      const stringOutput = arraysJS.processArray("");
+      expect(stringOutput).to.equal("Error: String is empty");
+    });
+
+    it("Convert string '334' to its spelled representation", function () {
+      const stringOutput = arraysJS.processArray("334");
+      expect(stringOutput).to.equal(" two three one four");
+    });
+
+    it("Convert '32333922' string to its spelled representation", function () {
+      const stringOutput = arraysJS.processArray("32333922");
+      expect(stringOutput).to.equal(
+        " one three one two three three one nine two two"
+      );
+    });
+    it("Convert '00020022' string to its spelled representation", function () {
+      const stringOutput = arraysJS.processArray("00020022");
+      expect(stringOutput).to.equal(" three zero one two two zero two two");
+    });
+    it("Convert '99190' string to its spelled representation", function () {
+      const stringOutput = arraysJS.processArray("99190");
+      expect(stringOutput).to.equal(" two nine one one one nine one zero");
+    });
+    it("Convert '555554478' string to its spelled representation", function () {
+      const stringOutput = arraysJS.processArray("555554478");
+      expect(stringOutput).to.equal(" five five two four one seven one eight");
+    });
+  });
+
   describe("#using filter and map together", function () {
     it("first filter and map by name", function () {
       const coffees = bobaBeverages
