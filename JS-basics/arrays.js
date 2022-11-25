@@ -366,8 +366,37 @@ const newArray = arr.filter(function (item, pos, self) {
 // ToDo
 
 console.log("newArray ", newArray);
-console.log("newArray ", arrayCounts);
-console.log("Mapping and counting values ", counts);
+
+// Map from "115211" to "two one, one two, one five, two one"
+
+const arr2 = [1, 1, 5, 2, 1, 1];
+
+var arrCounts = [];
+var arrNum = [];
+
+for (var i = 0; i < arr2.length; i++) {
+  var currentNum = arr2[i];
+  var count = 1;
+  if (arrNum.includes(currentNum) && currentNum === arr2[i - 1]) {
+    count++;
+    var position = arrNum.length - 1;
+    arrCounts[position] = count;
+  }
+  if (arrNum.includes(currentNum) && currentNum !== arr2[i - 1]) {
+    arrNum.push(currentNum);
+    count = 1;
+    arrCounts.push(count);
+  }
+  if (!arrNum.includes(currentNum)) {
+    arrNum.push(currentNum);
+    count = 1;
+    arrCounts.push(count);
+  }
+}
+
+console.log("Map from 115211 to two one, one two, one five, two one");
+console.log("arrCounts ", arrCounts);
+console.log("arrNum ", arrNum);
 
 // Filtering an array
 const { employeeData } = require("./employeeData");
