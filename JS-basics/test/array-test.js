@@ -35,26 +35,28 @@ describe("Function in JS test", function () {
 
     it("Convert string '334' to its spelled representation", function () {
       const stringOutput = arraysJS.processArray("334");
-      expect(stringOutput).to.equal(" two three one four");
+      expect(stringOutput).to.equal("two threes one four ");
     });
 
     it("Convert '32333922' string to its spelled representation", function () {
       const stringOutput = arraysJS.processArray("32333922");
       expect(stringOutput).to.equal(
-        " one three one two three three one nine two two"
+        "one three one two three threes one nine two twos "
       );
     });
     it("Convert '00020022' string to its spelled representation", function () {
       const stringOutput = arraysJS.processArray("00020022");
-      expect(stringOutput).to.equal(" three zero one two two zero two two");
+      expect(stringOutput).to.equal("three zeros one two two zeros two twos ");
     });
     it("Convert '99190' string to its spelled representation", function () {
       const stringOutput = arraysJS.processArray("99190");
-      expect(stringOutput).to.equal(" two nine one one one nine one zero");
+      expect(stringOutput).to.equal("two nines one one one nine one zero ");
     });
     it("Convert '555554478' string to its spelled representation", function () {
       const stringOutput = arraysJS.processArray("555554478");
-      expect(stringOutput).to.equal(" five five two four one seven one eight");
+      expect(stringOutput).to.equal(
+        "five fives two fours one seven one eight "
+      );
     });
   });
 

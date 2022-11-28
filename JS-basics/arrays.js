@@ -401,7 +401,11 @@ function processArray(numberInput) {
   }
 
   for (var j = 0; j < arrNum.length; j++) {
-    str = str + " " + arrMapping[arrCounts[j]] + " " + arrMapping[arrNum[j]];
+    if (arrCounts[j] > 1) {
+      str = str + arrMapping[arrCounts[j]] + " " + arrMapping[arrNum[j]] + "s ";
+    } else {
+      str = str + arrMapping[arrCounts[j]] + " " + arrMapping[arrNum[j]] + " ";
+    }
   }
 
   return str;
