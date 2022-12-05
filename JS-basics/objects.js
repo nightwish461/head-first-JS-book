@@ -21,7 +21,7 @@ console.log(user);
 console.log("accessing properties with dot notation: " + user.name);
 
 nameProperty = "name";
-console.log("accessing properties with [] : " + user["name"]);
+console.log("accessing properties with [] : " + user["name"]); // returns Marina
 console.log("accessing properties with [] : " + user[nameProperty]);
 
 // Using object destructuring
@@ -77,3 +77,19 @@ console.log("Add new value to object using square braket: ", cat);
 var getProperty = function (propertyName) {
   return obj[propertyName];
 };
+
+// Rename an Object's Key in JavaScript
+// https://bobbyhadz.com/blog/javascript-rename-object-key
+const objRename = { oldKey: "testValue" };
+
+objRename["newKey"] = objRename["oldKey"];
+console.log("rename objects key without delete  ", objRename); // {oldKey: 'value', newKey: 'value'}
+
+delete objRename["oldKey"];
+console.log("rename objects key ", objRename);
+
+// Map it to a new object
+const newObject = {
+  newObjectKey: objRename.newKey,
+};
+console.log("rename objects key mapping ", newObject);
