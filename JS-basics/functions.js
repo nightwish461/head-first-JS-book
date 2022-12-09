@@ -52,4 +52,37 @@ function countVowels2(str) {
   return m === null ? 0 : m.length;
 }
 
-console.log("Count vowels with regex ", countVowels("abracadabra")); // Result is 5
+console.log("Count vowels with regex ", countVowels2("abracadabra")); // Result is 5
+
+/*
+    Count the occurence of n-z in a string
+    Source: challenge comes from g964 on CodeWars
+*/
+function printerError(s) {
+  var errors = "";
+  var m = s.match(/[n-z]/gi);
+  console.log(m); // if no match, the result is null
+  if (m === null) {
+    errors = "0/" + s.length;
+  } else {
+    errors = m.length + "/" + s.length;
+  }
+  return errors;
+}
+
+console.log("printerError with regex ", printerError("aaabbbbhaijjjm"));
+
+function printerErrorV2(s) {
+  console.log("string length ", s.length);
+  const regex = /[n-z]/gi;
+  const errors = (s.match(regex) || []).length;
+  console.log("number of errors ", errors); // if no match, the result is null
+  return `${errors}/${s.length}`;
+}
+
+console.log(
+  "printerError with regex improved ",
+  printerErrorV2("gggguuuwbbbbbbhhhhhhhhhhuuuupppzzzzzzzz")
+);
+
+module.exports = { countVowels, countVowels2, printerErrorV2 };
